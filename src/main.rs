@@ -15,7 +15,7 @@ fn handler(time: u64, midi_data: &[u8], data: &mut HandlerData) {
     let time_seconds = time / 1_000_000;
     let time_micros  = time % 1_000_000;
 
-    let delta         = time - data.last_time;
+    let delta         = time.saturating_sub(data.last_time);
     let delta_seconds = delta / 1_000_000;
     let delta_micros  = delta % 1_000_000;
 
